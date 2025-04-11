@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Nap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body id="app-body">
+    <div class="app-container">
+        <header>
+            <h1>Study Nap</h1>
+            <span class="app-tagline">Your productivity companion</span>
+            <button id="settings-btn" class="icon-btn" aria-label="Settings">
+                <i class="fas fa-cog"></i>
+            </button>
+        </header>
+
+        <main>
+            <section id="timer-section" class="app-section">
+                <div class="section-header">
+                    <h2>Pomodoro Timer</h2>
+                    <div class="date-display">
+                        <i class="far fa-calendar-alt"></i>
+                        <span id="current-date"></span>
+                    </div>
+                </div>
+                <div class="timer-display">
+                    <span id="minutes">25</span>:<span id="seconds">00</span>
+                </div>
+                <div class="timer-status">
+                    <span id="session-type">Focus Session</span>
+                </div>
+                <div class="timer-controls">
+                    <button id="start-timer" class="btn">Start</button>
+                    <button id="pause-timer" class="btn" disabled>Pause</button>
+                    <button id="reset-timer" class="btn">Reset</button>
+                </div>
+                <div class="timer-progress">
+                    <div id="progress-bar"></div>
+                </div>
+            </section>
+
+            <section id="todo-section" class="app-section">
+                <h2>To-Do List <i class="fas fa-seedling"></i></h2>
+                <div class="todo-controls">
+                    <input type="text" id="new-task" placeholder="Add a new task...">
+                    <button id="add-task" class="btn">Add</button>
+                </div>
+                <ul id="task-list" class="task-list"></ul>
+            </section>
+
+            <section id="mood-section" class="app-section">
+                <h2>Today's Mood</h2>
+                <div class="mood-tracker">
+                    <button class="mood-option" data-mood="excellent">
+                        <span class="mood-emoji">😄</span>
+                        <span class="mood-label">Excellent</span>
+                    </button>
+                    <button class="mood-option" data-mood="good">
+                        <span class="mood-emoji">🙂</span>
+                        <span class="mood-label">Good</span>
+                    </button>
+                    <button class="mood-option" data-mood="okay">
+                        <span class="mood-emoji">😐</span>
+                        <span class="mood-label">Okay</span>
+                    </button>
+                    <button class="mood-option" data-mood="poor">
+                        <span class="mood-emoji">🙁</span>
+                        <span class="mood-label">Poor</span>
+                    </button>
+                    <button class="mood-option" data-mood="terrible">
+                        <span class="mood-emoji">😫</span>
+                        <span class="mood-label">Terrible</span>
+                    </button> 
+                </div>
+            </section>
+
+            <section id="water-section" class="app-section">
+                <h2>Water Balance</h2>
+                <div class="water-tracker">
+                    <div class="water-glasses">
+                        <button class="water-glass" data-index="1"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="2"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="3"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="4"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="5"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="6"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="7"><i class="fas fa-glass-water"></i></button>
+                        <button class="water-glass" data-index="8"><i class="fas fa-glass-water"></i></button>
+                    </div>
+                    <div class="water-counter">
+                        <span id="water-count">0</span> / 8 glasses
+                    </div>
+                </div>
+            </section>
+
+            <section id="gratitude-section" class="app-section">
+                <h2>Gratitude Journal</h2>
+                <div class="gratitude-container">
+                    <p class="gratitude-label">Things I'm grateful for today:</p>
+                    <div class="gratitude-items">
+                        <div class="gratitude-item">
+                            <i class="fas fa-heart"></i>
+                            <input type="text" placeholder="I'm grateful for...">
+                        </div>
+                        <div class="gratitude-item">
+                            <i class="fas fa-heart"></i>
+                            <input type="text" placeholder="I'm grateful for...">
+                            
+                        </div>
+                        <div class="gratitude-item">
+                            <i class="fas fa-heart"></i>
+                            <input type="text" placeholder="I'm grateful for...">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quote-section" class="app-section">
+                <div class="quote-container">
+                    <blockquote id="quote-text"></blockquote>
+                    <cite id="quote-author"></cite>
+                </div>
+            </section>
+        </main>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button id="close-settings" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-option">
+                        <label for="theme-color">Theme Color</label>
+                        <div class="color-options">
+                            <button class="color-option" data-color="var(--green-1)"></button>
+                            <button class="color-option" data-color="var(--green-2)"></button>
+                            <button class="color-option" data-color="var(--green-3)"></button>
+                            <button class="color-option" data-color="var(--green-4)"></button>
+                        </div>
+                    </div>
+                    <div class="setting-option">
+                        <label for="timer-settings">Timer Settings</label>
+                        <div class="timer-settings">
+                            <div>
+                                <label for="focus-time">Focus (min)</label>
+                                <input type="number" id="focus-time" min="1" max="60" value="25">
+                            </div>
+                            <div>
+                                <label for="short-break">Short Break (min)</label>
+                                <input type="number" id="short-break" min="1" max="30" value="5">
+                            </div>
+                            <div>
+                                <label for="long-break">Long Break (min)</label>
+                                <input type="number" id="long-break" min="1" max="60" value="15">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-option">
+                        <label for="quotes-toggle">Motivational Quotes</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="quotes-toggle" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-settings" class="btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
